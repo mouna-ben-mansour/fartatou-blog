@@ -5,7 +5,8 @@ const Blog = () => {
         [ 
             {title:'My new website',body:'lorem ipsum...',author:'mouna',id:1},
             {title:'Welcome party',body:'lorem ipsum...',author:'ahmed',id:2},
-            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:3}
+            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:3},
+            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:4}
         ]
     );
     return (
