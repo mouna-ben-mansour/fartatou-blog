@@ -22,7 +22,7 @@ const Home = () => {
             {title:'My new website',body:'lorem ipsum...',author:'mouna',id:1},
             {title:'Welcome party',body:'lorem ipsum...',author:'ahmed',id:2},
             {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:3},
-            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:4}
+            {title:'Trip tips and tricks',body:'lorem ipsum...',author:'sarra',id:4}
         ]
     );
 
@@ -34,6 +34,7 @@ const Home = () => {
             <button onClick={handleClick}>Click me</button>
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
             <Blog blogs={ blogs } title="All Blogs"/>
+            <Blog blogs={ blogs.filter((blog)=> blog.author ==='sarra' ) } title="Fartatou Blog"/>
         </div>
      );
 }
