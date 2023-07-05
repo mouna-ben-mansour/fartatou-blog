@@ -1,6 +1,6 @@
-const Blog = (props) => {
-const blogs = props.blogs;
-const title = props.title;
+const Blog = ({blogs , title}) => {
+// const blogs = props.blogs;
+// const title = props.title;
     return (
         <div className='blog'>
             <h1>{ title }</h1>
