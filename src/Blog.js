@@ -1,17 +1,9 @@
-import { useState } from 'react'
-
-const Blog = () => {
-    const [ blogs, setBlogs] = useState(
-        [ 
-            {title:'My new website',body:'lorem ipsum...',author:'mouna',id:1},
-            {title:'Welcome party',body:'lorem ipsum...',author:'ahmed',id:2},
-            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:3},
-            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:4}
-        ]
-    );
+const Blog = (props) => {
+const blogs = props.blogs;
+const title = props.title;
     return (
         <div className='blog'>
-            <h1>Blog list</h1>
+            <h1>{ title }</h1>
            { blogs.map((blog) => (
                     <div className='blog-preview' key={blog.id}>
                         <h2>{ blog.title }</h2>

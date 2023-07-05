@@ -17,6 +17,15 @@ const Home = () => {
         console.log(e.target);
     } 
 
+    const [ blogs, setBlogs] = useState(
+        [ 
+            {title:'My new website',body:'lorem ipsum...',author:'mouna',id:1},
+            {title:'Welcome party',body:'lorem ipsum...',author:'ahmed',id:2},
+            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:3},
+            {title:'Trip Canada',body:'lorem ipsum...',author:'sarra',id:4}
+        ]
+    );
+
     return ( 
         <div className="home">
             <h2>Homepage</h2>
@@ -24,7 +33,7 @@ const Home = () => {
             <p >{ lastname }</p>
             <button onClick={handleClick}>Click me</button>
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
-            <Blog />
+            <Blog blogs={ blogs } title="All Blogs"/>
         </div>
      );
 }
