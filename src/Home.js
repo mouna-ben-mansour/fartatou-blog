@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Blog from './Blog';
 
 const Home = () => {
     let name = 'Mouna';
@@ -23,6 +24,7 @@ const Home = () => {
             <p >{ lastname }</p>
             <button onClick={handleClick}>Click me</button>
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
+            <Blog />
         </div>
      );
 }
