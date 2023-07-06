@@ -27,19 +27,24 @@ const Home = () => {
     );
 
     const [blogsJson, setBlogsJson] = useState(null);
+    const [isPending, setIsPending] = useState(true);
     const handleDelete = (id) => {
         const newblogs = blogs.filter((blog) => blog.id !== id)
         setBlogs(newblogs);
     }
     useEffect(() => {
-        fetch('http://localhost:8002/blogs')
+        setTimeout(()=> {
+            fetch('http://localhost:8002/blogs')
             .then(res => {
                 return res.json();
             })
             .then(data => {
                 console.log(data);
                 setBlogsJson(data);
+                setIsPending(false);
             })
+        },5000)
+      
 
         console.log('use effect run');
         console.log(lastname)
@@ -54,6 +59,7 @@ const Home = () => {
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
             <Blog blogs={ blogs } title="All Blogs" handleDelete={handleDelete}/>
             <Blog blogs={ blogs.filter((blog)=> blog.author ==='sarra' ) } title="Fartatou Blog" handleDelete={handleDelete}/>
+           { isPending && <div>Loading...</div>}
            {blogsJson && <Blog blogs={ blogsJson } title="All Blogs Json" handleDelete={handleDelete}/>}
         </div>
      );
