@@ -30,19 +30,19 @@ const Home = () => {
         setBlogs(newblogs);
     }
     useEffect(() => {
-        console.log('use effect run')
-    }
-
-    );
+        console.log('use effect run');
+        console.log(lastname)
+    },[lastname]);
     return ( 
         <div className="home">
             <h2>Homepage</h2>
             <p >{ name } is { age } years old</p>
             <p >{ lastname }</p>
+            <button onClick={() => setLastname('Sarra')}>Change lastname</button>
             <button onClick={handleClick}>Click me</button>
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
             <Blog blogs={ blogs } title="All Blogs" handleDelete={handleDelete}/>
-            <Blog blogs={ blogs.filter((blog)=> blog.author ==='sarra' ) } title="Fartatou Blog"/>
+            <Blog blogs={ blogs.filter((blog)=> blog.author ==='sarra' ) } title="Fartatou Blog" handleDelete={handleDelete}/>
         </div>
      );
 }
