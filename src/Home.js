@@ -25,11 +25,22 @@ const Home = () => {
             {title:'Trip tips and tricks',body:'lorem ipsum...',author:'sarra',id:4}
         ]
     );
+
+    const [blogsJson, setBlogsJson] = useState(null);
     const handleDelete = (id) => {
         const newblogs = blogs.filter((blog) => blog.id !== id)
         setBlogs(newblogs);
     }
     useEffect(() => {
+        fetch('http://localhost:8002/blogs')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                console.log(data);
+                setBlogsJson(data);
+            })
+
         console.log('use effect run');
         console.log(lastname)
     },[lastname]);
@@ -43,6 +54,7 @@ const Home = () => {
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
             <Blog blogs={ blogs } title="All Blogs" handleDelete={handleDelete}/>
             <Blog blogs={ blogs.filter((blog)=> blog.author ==='sarra' ) } title="Fartatou Blog" handleDelete={handleDelete}/>
+           {blogsJson && <Blog blogs={ blogsJson } title="All Blogs Json" handleDelete={handleDelete}/>}
         </div>
      );
 }
