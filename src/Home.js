@@ -25,7 +25,10 @@ const Home = () => {
             {title:'Trip tips and tricks',body:'lorem ipsum...',author:'sarra',id:4}
         ]
     );
-
+    const handleDelete = (id) => {
+        const newblogs = blogs.filter((blog) => blog.id !== id)
+        setBlogs(newblogs);
+    }
     return ( 
         <div className="home">
             <h2>Homepage</h2>
@@ -33,7 +36,7 @@ const Home = () => {
             <p >{ lastname }</p>
             <button onClick={handleClick}>Click me</button>
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
-            <Blog blogs={ blogs } title="All Blogs"/>
+            <Blog blogs={ blogs } title="All Blogs" handleDelete={handleDelete}/>
             <Blog blogs={ blogs.filter((blog)=> blog.author ==='sarra' ) } title="Fartatou Blog"/>
         </div>
      );
