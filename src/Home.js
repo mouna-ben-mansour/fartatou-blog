@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Blog from './Blog';
+import useFetch from './useFetch';
 
 const Home = () => {
     let name = 'Mouna';
@@ -26,37 +27,13 @@ const Home = () => {
         ]
     );
 
-    const [blogsJson, setBlogsJson] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
+  
     const handleDelete = (id) => {
         const newblogs = blogs.filter((blog) => blog.id !== id)
         setBlogs(newblogs);
     }
+    const { data: blogsJson , isPending , error } = useFetch('http://localhost:8002/blogs');
     useEffect(() => {
-        setTimeout(()=> {
-            fetch('http://localhost:8002/blogs')
-            .then(res => {
-                console.log(res);
-                if(!res.ok){
-                    throw Error('could not fetch the data for that resource');
-                }
-                return res.json();
-            })
-            .then(data => {
-                console.log(data);
-                setBlogsJson(data);
-                setIsPending(false);
-                setError(null);
-            })
-            .catch(err => {
-                console.log(err.message);
-                setError(err.message);
-                setIsPending(false);
-            })
-        },1000)
-      
-
         console.log('use effect run');
         console.log(lastname)
     },[lastname]);
