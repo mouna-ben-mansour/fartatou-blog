@@ -28,6 +28,7 @@ const Home = () => {
 
     const [blogsJson, setBlogsJson] = useState(null);
     const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
     const handleDelete = (id) => {
         const newblogs = blogs.filter((blog) => blog.id !== id)
         setBlogs(newblogs);
@@ -36,14 +37,24 @@ const Home = () => {
         setTimeout(()=> {
             fetch('http://localhost:8002/blogs')
             .then(res => {
+                console.log(res);
+                if(!res.ok){
+                    throw Error('could not fetch the data for that resource');
+                }
                 return res.json();
             })
             .then(data => {
                 console.log(data);
                 setBlogsJson(data);
                 setIsPending(false);
+                setError(null);
             })
-        },5000)
+            .catch(err => {
+                console.log(err.message);
+                setError(err.message);
+                setIsPending(false);
+            })
+        },1000)
       
 
         console.log('use effect run');
@@ -59,6 +70,7 @@ const Home = () => {
             <button onClick={(e)=> handleClickAgain('Mouna',e)}>Click me again</button> {/* add argument without invoke the function so we use anonymous function */}
             <Blog blogs={ blogs } title="All Blogs" handleDelete={handleDelete}/>
             <Blog blogs={ blogs.filter((blog)=> blog.author ==='sarra' ) } title="Fartatou Blog" handleDelete={handleDelete}/>
+            { error && <div>{error}</div>}
            { isPending && <div>Loading...</div>}
            {blogsJson && <Blog blogs={ blogsJson } title="All Blogs Json" handleDelete={handleDelete}/>}
         </div>
